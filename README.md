@@ -1,6 +1,7 @@
 # Introdução a Sistemas Inteligentes
 
-Este repositório concentra os materiais utilizados na disciplina **Introdução a Sistemas Inteligentes**, oferecida no [Instituto Federal do Norte de Minas Gerais - IFNMG](https://www.ifnmg.edu.br). A disciplina visa fornecer uma base sólida em inteligência artificial (IA) e aprendizado de máquina (ML), com foco em conceitos fundamentais, algoritmos, técnicas e aplicações práticas.
+Este repositório concentra os materiais utilizados na disciplina **Introdução a Sistemas Inteligentes**, oferecida no IFNMG-Campus Almenara.
+<p>A disciplina visa fornecer uma base sólida em inteligência artificial (IA) e aprendizado de máquina (ML), com foco em conceitos fundamentais, algoritmos, técnicas e aplicações práticas.</p>
 
 
 ## Estrutura do Repositório
