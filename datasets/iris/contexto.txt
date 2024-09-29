@@ -1,0 +1,15 @@
+Objetivo: O objetivo do dataset Iris é classificar flores da espécie "Iris" em três categorias com base em quatro características medidas. Ele é um exemplo de problema de classificação multiclasse.
+
+Tamanho do Conjunto de Dados: O dataset contém 150 amostras, divididas igualmente entre três classes.
+
+Classes: As três classes de flores são:
+
+Iris-setosa
+Iris-versicolor
+Iris-virginica Cada uma das classes tem 50 exemplos.
+Características (Features): Cada amostra tem quatro características numéricas:
+
+Comprimento da sépala (sepal length) - em centímetros.
+Largura da sépala (sepal width) - em centímetros.
+Comprimento da pétala (petal length) - em centímetros.
+Largura da pétala (petal width) - em centímetros.
