@@ -1,0 +1,11 @@
+O questionário foi dividido em 8 partes, e dentro de cada uma das partes temos as perguntas e opções de escolha.
+
+Parte 1 - Dados demográficos
+Parte 2 - Dados sobre carreira
+Parte 3 - Desafios dos gestores de times de dados
+Parte 4 - Conhecimentos na área de dados
+Parte 5 - Objetivos na área de dados
+Parte 6 - Conhecimentos em Engenharia de Dados/DE
+Parte 7 - Conhecimentos em Análise de Dados/DA
+Parte 8 - Conhecimentos em Ciências de Dados/DS
+Cada pergunta é dividida em Parte, Letra da Pergunta, Número da Opção escolhida Exemplo: P3a_1 = Parte 3, pergunta (a), opção (1)
