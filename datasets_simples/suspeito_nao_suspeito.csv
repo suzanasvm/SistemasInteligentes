@@ -1,0 +1,11 @@
+acesso,ip_novo,horario_incomum,muitas_tentativas,suspeito
+A1,1,1,1,1
+A2,1,1,0,1
+A3,1,0,1,1
+A4,0,1,1,1
+A5,0,0,0,0
+A6,0,1,0,0
+A7,1,0,0,0
+A8,0,0,1,0
+A9,1,1,1,1
+A10,0,0,0,0
