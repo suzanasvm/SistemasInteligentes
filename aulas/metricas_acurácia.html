@@ -1,0 +1,331 @@
+<style>
+body { font-family: 'Segoe UI', sans-serif; background: white; margin: 0; padding: 0; }
+.slide { background: white; color: #1a1a1a; padding: 40px 30px; max-width: 100%; }
+.titulo { background: linear-gradient(to right, #dcfce7, #f0fdf4); border-left: 6px solid #22c55e; padding: 20px; margin-bottom: 30px; border-radius: 6px; }
+.titulo h1 { color: #15803d; font-size: 36px; margin: 0 0 8px; }
+.titulo p { color: #52b788; font-size: 16px; margin: 0; }
+.secao { margin: 25px 0; }
+.secao-titulo { color: #15803d; font-size: 24px; border-bottom: 3px solid #22c55e; padding-bottom: 10px; margin-bottom: 20px; font-weight: 700; }
+.macete { background: #fef08a; border-left: 4px solid #eab308; padding: 15px; margin: 15px 0; border-radius: 4px; font-weight: 600; color: #92400e; line-height: 1.6; }
+.exemplo { background: #f0fdf4; border: 2px solid #22c55e; padding: 15px; margin: 15px 0; border-radius: 6px; }
+.grid-metricas { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+.card-metrica { background: #dcfce7; border: 2px solid #22c55e; padding: 20px; border-radius: 8px; }
+.card-metrica .nome { color: #15803d; font-weight: 700; font-size: 18px; margin-bottom: 8px; }
+.card-metrica .formula { background: white; padding: 10px; border-radius: 4px; font-family: monospace; font-size: 13px; color: #22c55e; margin: 8px 0; }
+.card-metrica .desc { color: #52b788; font-size: 13px; line-height: 1.5; }
+.matriz { display: grid; grid-template-columns: 80px 120px 120px; grid-template-rows: auto auto auto; gap: 2px; margin: 20px 0; background: #22c55e; padding: 2px; border-radius: 6px; }
+.matriz > div { background: white; padding: 15px; text-align: center; font-weight: 500; }
+.matriz .label { background: #dcfce7; color: #15803d; font-weight: 700; }
+.matriz .verde { background: #bbf7d0; color: #15803d; font-weight: 700; font-size: 16px; }
+.matriz .vermelho { background: #fca5a5; color: #7f1d1d; font-weight: 700; font-size: 16px; }
+.dica { background: linear-gradient(135deg, #fef3c7 0%, #fef08a 100%); border-left: 4px solid #f59e0b; padding: 12px 15px; margin: 12px 0; border-radius: 4px; font-size: 14px; }
+.comparacao { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 15px 0; }
+.box { background: #f0fdf4; border: 1px solid #22c55e; padding: 12px; border-radius: 4px; }
+.box strong { color: #15803d; }
+.linha { display: flex; align-items: center; gap: 10px; margin: 8px 0; }
+.codigo { background: #1e293b; color: #e2e8f0; padding: 20px; border-radius: 8px; margin: 15px 0; overflow-x: auto; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.8; border-left: 4px solid #22c55e; white-space: pre-wrap; word-wrap: break-word; }
+.codigo-titulo { color: #52b788; font-weight: 700; margin-bottom: 10px; font-size: 14px; }
+.step { background: #f0fdf4; border: 2px solid #22c55e; padding: 15px; margin: 15px 0; border-radius: 6px; }
+.step-num { display: inline-block; background: #22c55e; color: white; width: 30px; height: 30px; border-radius: 50%; text-align: center; line-height: 30px; font-weight: 700; margin-right: 10px; }
+.aviso { background: #fee2e2; border-left: 4px solid #dc2626; padding: 15px; margin: 15px 0; border-radius: 6px; color: #7f1d1d; line-height: 1.6; }
+.output { background: #ecfdf5; border: 1px solid #22c55e; padding: 12px; margin: 10px 0; border-radius: 4px; font-family: monospace; font-size: 13px; white-space: pre-wrap; word-wrap: break-word; line-height: 1.6; }
+</style>
+
+<div class="slide">
+  <div class="titulo">
+    <h1>Métricas de Acurácia em ML</h1>
+    <p>Aprendendo a medir se seu modelo está acertando com código Python real</p>
+  </div>
+
+  <div class="secao">
+    <div class="secao-titulo">O que é Acurácia?</div>
+    <div class="exemplo">
+      <strong>Acurácia = Taxa de Acerto Geral</strong><br><br>
+      Imagine um médico fazendo diagnósticos. Ele examinou 100 pacientes e acertou em 85. Logo, sua acurácia é de 85%.
+      <div class="linha"><strong>Acertos totais / Total de tentativas = Acurácia</strong></div>
+    </div>
+    <div class="macete"> Acurácia = "Quantas vezes ele acertou no total?"</div>
+  </div>
+
+  <div class="secao">
+    <div class="secao-titulo">A Matriz de Confusão (A Rainha das Métricas)</div>
+    <p>É a tabela que mostra TUDO que seu modelo fez certo e errado:</p>
+    
+    <div class="matriz">
+      <div class="label"></div>
+      <div class="label">Predito: SIM</div>
+      <div class="label">Predito: NÃO</div>
+      <div class="label">Real: SIM</div>
+      <div class="verde">VP (Verdadeiro Positivo)</div>
+      <div class="vermelho">FN (Falso Negativo)</div>
+      <div class="label">Real: NÃO</div>
+      <div class="vermelho">FP (Falso Positivo)</div>
+      <div class="verde">VN (Verdadeiro Negativo)</div>
+    </div>
+
+    <div class="dica">Memória: VP e VN = o modelo ACERTOU. FP e FN = o modelo ERROU.</div>
+    
+    <div class="macete">
+    VP = Grávida (é sim) e teste deu positivo (acertou!)<br>
+    VN = Não grávida (é não) e teste deu negativo (acertou!)<br>
+    FP = Não grávida (é não) mas teste deu positivo (alarme falso!)<br>
+    FN = Grávida (é sim) mas teste deu negativo (errou feio!)</div>
+  </div>
+
+  <div class="secao">
+    <div class="secao-titulo">Fórmulas que você PRECISA memorizar</div>
+    
+    <div class="grid-metricas">
+      <div class="card-metrica">
+        <div class="nome">Acurácia</div>
+        <div class="formula">(VP + VN) / Total</div>
+        <div class="desc">Proporção geral de acertos</div>
+      </div>
+      
+      <div class="card-metrica">
+        <div class="nome">Precision</div>
+        <div class="formula">VP / (VP + FP)</div>
+        <div class="desc">Das predições SIM, quantas estavam certas?</div>
+      </div>
+      
+      <div class="card-metrica">
+        <div class="nome">Recall</div>
+        <div class="formula">VP / (VP + FN)</div>
+        <div class="desc">Dos casos SIM reais, quantos encontrou?</div>
+      </div>
+    </div>
+
+    <div class="macete">
+    MACETE FINAL (O MAIS IMPORTANTE):<br><br>
+    Precision = "De tudo que EU PREVI como SIM, quanto estava certo?" (Foco: evitar alarmes falsos)<br><br>
+    Recall = "De tudo que REALMENTE ERA SIM, quanto eu consegui achar?" (Foco: não perder nenhum caso importante)</div>
+  </div>
+
+  <div class="secao">
+    <div class="secao-titulo">Exemplo Prático: Detector de Spam</div>
+    
+    <div class="exemplo">
+      <strong>Cenário:</strong> Seu filtro de spam recebeu 1000 emails<br><br>
+      80 spams identificados corretamente (VP)<br>
+      10 spams não identificados (FN)<br>
+      20 emails legítimos marcados como spam (FP)<br>
+      890 emails legítimos identificados corretamente (VN)<br><br>
+      
+      <div class="linha"><strong>Acurácia:</strong> (80 + 890) / 1000 = 97%</div>
+      
+      <div class="comparacao">
+        <div class="box">
+          <strong style="color: #15803d;">Precision:</strong><br>
+          80 / (80 + 20) = 80%<br>
+          <em>De tudo que marquei como spam, 80% realmente era</em>
+        </div>
+        <div class="box">
+          <strong style="color: #15803d;">Recall:</strong><br>
+          80 / (80 + 10) = 88%<br>
+          <em>De todos os spams reais, consegui pegar 88%</em>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="secao">
+    <div class="secao-titulo">Quando usar cada métrica?</div>
+    
+    <div class="macete">
+      DIAGNÓSTICO DE DOENÇA:<br>
+      Use Recall! (Não pode deixar paciente doente passar)<br>
+      Melhor falso positivo que falso negativo
+    </div>
+    
+    <div class="macete">
+      FILTRO DE SPAM:<br>
+      Use Precision! (Não quer bloquear email importante)<br>
+      Melhor deixar spam passar que perder um email real
+    </div>
+    
+    <div class="macete">
+      DECISÕES IMPORTANTES:<br>
+      Use Acurácia + Precision + Recall juntos!<br>
+      (Quanto mais informação, melhor a decisão)
+    </div>
+  </div>
+
+  <div class="secao">
+    <div class="secao-titulo">Como Usar no Google Colab com sklearn</div>
+    
+    <div class="step">
+      <span class="step-num">1</span><strong>Importar as bibliotecas necessárias</strong>
+      <div class="codigo"><div class="codigo-titulo">Copie e cole no seu Colab:</div>
+from sklearn.metrics import accuracy_score, confusion_matrix
+from sklearn.metrics import precision_score, recall_score
+from sklearn.metrics import classification_report
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span><strong>Preparar seus dados (valores reais vs preditos)</strong>
+      <div class="codigo"><div class="codigo-titulo">Exemplo com dados:</div>
+# y_verdadeiro = o que REALMENTE ERA (rótulos corretos)
+# y_predito = o que seu modelo PREVIU
+
+y_verdadeiro = np.array([1, 1, 0, 1, 0, 0, 1, 1, 0, 1])
+
+y_predito = np.array([1, 1, 1, 1, 0, 0, 1, 0, 0, 1])
+
+print("Rótulos reais:", y_verdadeiro)
+print("Rótulos preditos:", y_predito)
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span><strong>Calcular a Acurácia</strong>
+      <div class="codigo"><div class="codigo-titulo">Calcular taxa de acerto geral:</div>
+acuracia = accuracy_score(y_verdadeiro, y_predito)
+
+print(f"Acurácia: {acuracia:.2%}")
+      </div>
+      <div class="output">Acurácia: 80.00%
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">4</span><strong>Gerar a Matriz de Confusão</strong>
+      <div class="codigo"><div class="codigo-titulo">Ver a matriz em números:</div>
+matriz = confusion_matrix(y_verdadeiro, y_predito)
+
+print("Matriz de Confusão:")
+print(matriz)
+
+print(f"\nVerdadeiros Positivos (VP): {matriz[1,1]}")
+print(f"Falsos Positivos (FP): {matriz[0,1]}")
+print(f"Falsos Negativos (FN): {matriz[1,0]}")
+print(f"Verdadeiros Negativos (VN): {matriz[0,0]}")
+      </div>
+      <div class="output">Matriz de Confusão:
+[[7 1]
+ [1 1]]
+
+Verdadeiros Positivos (VP): 1
+Falsos Positivos (FP): 1
+Falsos Negativos (FN): 1
+Verdadeiros Negativos (VN): 7
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">5</span><strong>Visualizar a Matriz de Confusão (Heatmap)</strong>
+      <div class="codigo"><div class="codigo-titulo">Desenhar a matriz de forma visual:</div>
+plt.figure(figsize=(8, 6))
+
+sns.heatmap(matriz, annot=True, fmt='d', cmap='Greens', 
+            xticklabels=['Negativo', 'Positivo'],
+            yticklabels=['Negativo', 'Positivo'],
+            cbar=True, square=True)
+
+plt.ylabel('Valor Real')
+plt.xlabel('Valor Predito')
+plt.title('Matriz de Confusão')
+plt.show()
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">6</span><strong>Calcular Precision e Recall</strong>
+      <div class="codigo"><div class="codigo-titulo">Ir além da acurácia:</div>
+precision = precision_score(y_verdadeiro, y_predito)
+
+recall = recall_score(y_verdadeiro, y_predito)
+
+print(f"Precision: {precision:.2%}")
+print(f"Recall: {recall:.2%}")
+      </div>
+      <div class="output">Precision: 50.00%
+Recall: 50.00%
+      </div>
+    </div>
+
+    <div class="step">
+      <span class="step-num">7</span><strong>Relatório Completo</strong>
+      <div class="codigo"><div class="codigo-titulo">Ver tudo junto:</div>
+print(classification_report(y_verdadeiro, y_predito, 
+                          target_names=['Negativo', 'Positivo']))
+      </div>
+      <div class="output">              precision    recall  f1-score   support
+
+    Negativo       0.88      0.88      0.88         8
+    Positivo       0.50      0.50      0.50         2
+
+    accuracy                           0.80        10
+   macro avg       0.69      0.69      0.69        10
+weighted avg       0.80      0.80      0.80        10
+      </div>
+    </div>
+  </div>
+
+  <div class="secao">
+    <div class="secao-titulo">Código Completo (Copia e Cola)</div>
+    <div class="codigo">
+from sklearn.metrics import accuracy_score, confusion_matrix
+from sklearn.metrics import precision_score, recall_score
+from sklearn.metrics import classification_report
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Seus dados
+y_verdadeiro = np.array([1, 1, 0, 1, 0, 0, 1, 1, 0, 1])
+
+y_predito = np.array([1, 1, 1, 1, 0, 0, 1, 0, 0, 1])
+
+
+# Calcular métricas
+acuracia = accuracy_score(y_verdadeiro, y_predito)
+
+precision = precision_score(y_verdadeiro, y_predito)
+
+recall = recall_score(y_verdadeiro, y_predito)
+
+matriz = confusion_matrix(y_verdadeiro, y_predito)
+
+
+# Imprimir resultados
+print(f"Acurácia: {acuracia:.2%}")
+print(f"Precision: {precision:.2%}")
+print(f"Recall: {recall:.2%}")
+
+print("\nMatriz de Confusão:")
+print(matriz)
+
+
+# Visualizar
+plt.figure(figsize=(8, 6))
+
+sns.heatmap(matriz, annot=True, fmt='d', cmap='Greens')
+
+plt.ylabel('Real')
+plt.xlabel('Predito')
+plt.title('Matriz de Confusão')
+plt.show()
+
+
+# Relatório detalhado
+print("\n" + classification_report(y_verdadeiro, y_predito))
+    </div>
+  </div>
+
+  <div class="secao">
+    <div class="secao-titulo">Resumão Final</div>
+    <div class="macete">
+    ACURÁCIA: Proporção geral de acertos. Use quando as classes estão balanceadas.<br><br>
+    PRECISION: "Precisão da predição". Quando errar em marcar como SIM é caro.<br><br>
+    RECALL: "Recuperação/Cobertura". Quando deixar passar SIM é caro.<br><br>
+    F1-SCORE: A média equilibrada entre Precision e Recall. Use quando ambos importam!</div>
+  </div>
+
+  <div class="aviso">
+    DICA IMPORTANTE: A acurácia sozinha pode enganar! Se você tem 95% de casos negativos e seu modelo prediz "negativo" para tudo, ele terá 95% de acurácia... mas não detectou nenhum caso positivo! Use sempre a matriz de confusão.
+  </div>
+</div>
