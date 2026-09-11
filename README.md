@@ -3,6 +3,26 @@
 Este repositório concentra os materiais utilizados na disciplina **Introdução a Sistemas Inteligentes**, oferecida no IFNMG-Campus Almenara.
 <p>A disciplina visa fornecer uma base sólida em inteligência artificial (IA) e aprendizado de máquina (ML), com foco em conceitos fundamentais, algoritmos, técnicas e aplicações práticas.</p>
 
+## Materiais de Apoio
+
+- **Playlist**  
+  [Acessar playlist no YouTube](https://www.youtube.com/watch?v=rGXnO4O3dgk&list=PLCVJahuuz2D_8eF0aHFVF_Ao9sbIDTkhm)
+
+- **Explorando Dados**  
+  [Abrir notebook no Google Colab](https://colab.research.google.com/drive/1H-sLCjUJfog6jvAG6dfAuovZoDvZalaO?usp=sharing)
+
+- **Análise de Dados**  
+  [Abrir notebook no Google Colab](https://colab.research.google.com/drive/10a3imqLg_vbLn03FEDsyVgGby8_Ru11t?usp=sharing)
+
+- **Matplotlib**  
+  [Abrir notebook no Google Colab](https://colab.research.google.com/drive/1vM3XmXx5z6nb5nxDBrb6jXUdQ_we1Gzp?usp=sharing)
+
+- **Seaborn**  
+  [Abrir notebook no Google Colab](https://colab.research.google.com/drive/1-ZLAK0PDvgh8uwbGplQ0da0yN7zzimJN?usp=sharing)
+
+- **Plotly**  
+  [Abrir notebook no Google Colab](https://colab.research.google.com/drive/15ylke9EhhjWvC0LmMG1ztKFQWEBL7w4K?usp=sharing)
+
 
 ## Estrutura do Repositório
 
