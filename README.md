@@ -22,6 +22,9 @@ Este repositório concentra os materiais utilizados na disciplina **Introdução
 
 - **Plotly**  
   [Abrir notebook no Google Colab](https://colab.research.google.com/drive/15ylke9EhhjWvC0LmMG1ztKFQWEBL7w4K?usp=sharing)
+  
+- **Análise de Dados - Trânsito SP**
+-   [Abrir notebook no Google Colab](https://colab.research.google.com/github/Patotricks15/Data-Science-and-Statistics/blob/master/Mortes_acidentes_transito_SP(2015-2020).ipynb)
 
 
 ## Estrutura do Repositório
