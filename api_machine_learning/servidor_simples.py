@@ -1,12 +1,3 @@
-# ============================================================
-# PARTE 1: O SERVIDOR (a "cozinha" do restaurante)
-# ============================================================
-# Uma API é um programa que fica ligado, esperando pedidos.
-# Quando um pedido chega, ele processa e devolve uma resposta.
-#
-# Para rodar:  uvicorn servidor_simples:app --reload
-# ============================================================
-
 from fastapi import FastAPI
 from pydantic import BaseModel
 
