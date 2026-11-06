@@ -7,15 +7,11 @@ app = FastAPI()
 
 # Aqui definimos COMO o pedido deve chegar.
 # O cliente precisa enviar um dado chamado "nome", do tipo texto.
-class Pedido(BaseModel):
-    nome: str
-
-
+class Entrada(BaseModel):
+    fonte: str
 # Uma "rota" é um endereço da API.
-# @app.post significa: "esta função responde a pedidos do tipo POST
-# no endereço /saudacao".
-@app.post("/saudacao")
-def saudacao(pedido: Pedido):
+@app.post("/predict")
+def predict(entrada: Entrada):
     # Aqui acontece o processamento (neste caso, algo bem simples)
     mensagem = f"Olá, {pedido.nome}! Sua primeira API está funcionando."
 
