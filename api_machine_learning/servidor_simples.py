@@ -13,7 +13,7 @@ class Entrada(BaseModel):
 @app.post("/predict")
 def predict(entrada: Entrada):
     # Aqui acontece o processamento (neste caso, algo bem simples)
-    mensagem = f"Olá, {pedido.nome}! Sua primeira API está funcionando."
+    mensagem = f"Olá, {entrada.fonte}! Sua primeira API está funcionando."
 
     # O que retornamos vira a resposta enviada ao cliente (em formato JSON)
     return {"mensagem": mensagem}
